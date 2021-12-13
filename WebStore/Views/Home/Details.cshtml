@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebStore.Models.EmployeeView>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+     <table>
+        <thead>
+            <tr>
+                <th> Id </th>
+               
+                <th> Описание </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+               
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Description</td>
+                   
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr/>
+
+    <a href="/"> На главную</a>
+</body>
+</html>

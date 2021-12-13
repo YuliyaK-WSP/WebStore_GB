@@ -11,28 +11,29 @@
     <table>
         <thead>
             <tr>
-                <th>id</th>
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Отчество</th>
-                <th>Возраст</th>
-                <th>Должность</th>
+                <th> Id </th>
+                <th> Фамилия </th>
+                <th> Имя </th>
+                <th> Отчество </th>
+                <th> Возраст </th>
+                <th> Должность </th>
                 <th>Отдел</th>
-                <th><a href="/"></a></th>
+                
             </tr>
         </thead>
         <tbody>
-            @foreach(var employee in Model)
+            @foreach(var item in Model)
             {
                 <tr>
                     
-                    <td>@employee.id</td>
-                    <td>@employee.LastName</td>
-                    <td>@employee.FirstName</td>
-                    <td>@employee.Patronymic</td>
-                    <td>@employee.Age</td>
-                    <td>@employee.Profession</td>
-                    <td>@employee.Department</td>
+                    <td>@item.Id</td>
+                    <td>@item.LastName</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.Patronymic</td>
+                    <td>@item.Age</td>
+                    <td>@item.Profession</td>
+                    <td>@item.Department</td>
+                    <td>@Html.ActionLink("Детали", "Details", new { id = item.Id })</td>
                     
                 </tr>
             }
