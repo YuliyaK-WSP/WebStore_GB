@@ -9,5 +9,9 @@ namespace WebStore.Controllers
            // return Content("Данные из первого контроллера");
             return View();
         }
+        public IActionResult ConfiguredAction()
+        {
+
+        }
     }
 }
