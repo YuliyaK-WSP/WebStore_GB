@@ -14,7 +14,7 @@ namespace WebStore.Models
         public string Patronymic { get; set; }
         public int Age { get; set; }
         public string Profession { get; set; }
-        public string Department { get; set; }
+        public int Department { get; set; }
 
     }
 }
