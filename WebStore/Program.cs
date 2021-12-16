@@ -7,6 +7,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+
+app.UseStaticFiles();
+
 app.UseRouting();
 // Загрузка информации из файла конфигурации
 
