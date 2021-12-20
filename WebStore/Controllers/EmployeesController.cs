@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebStore.Data;
 using WebStore.Models;
-
+using WebStore.ViewModels;
 
 namespace WebStore.Controllers
 {
@@ -25,6 +25,39 @@ namespace WebStore.Controllers
                 return NotFound();
             }
             return View(employee);
+        }
+        //public IActionResult Create() => View();
+
+        public IActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var employee = __Employees.FirstOrDefault(e => e.Id == id);
+            if (employee is null)
+            {
+                return NotFound();
+            }
+            var model = new EmployeeEditViewModel
+            {
+                Id = employee.Id,
+                LastName = employee.LastName,
+                FirstName = employee.FirstName,
+                Patronymic = employee.Patronymic,
+                Age = employee.Age,
+                Profession = employee.Profession,
+                Department = employee.Department,
+            };
+
+            return View(model);
+        }
+        public IActionResult Edit(EmployeeEditViewModel Model)
+        {
+            //Обработка модели...
+
+            return RedirectToAction("Index");
         }
     }
 }
