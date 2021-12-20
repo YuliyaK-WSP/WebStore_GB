@@ -1,4 +1,4 @@
-﻿@model WebStore.ViewModels.EmployeeEditViewModel
+﻿@model WebStore.ViewModels.EmployeeViewModel
 
 
 @{
@@ -54,7 +54,7 @@
             @Html.DisplayFor(model => model.Department)
         </dd>
     </dl>
-<form asp-action="DeleteConfirmed" asp-route-id="@Model.Id">
+    <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id">
             <input type="submit" value="Удалить!" class="btn btn-danger" /> |
             <a asp-action="Index">Назад к списку</a>
         </form>
