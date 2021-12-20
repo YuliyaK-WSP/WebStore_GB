@@ -1,5 +1,7 @@
 using WebStore.Infrastructure.Conventions;
 using WebStore.Infrastructure.Middleware;
+using WebStore.Services;
+using WebStore.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -7,6 +9,9 @@ services.AddControllersWithViews(opt =>
 {
     opt.Conventions.Add(new TestConvention());
 });
+
+services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
