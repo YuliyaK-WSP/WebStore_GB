@@ -17,6 +17,8 @@ namespace WebStore.Controllers
         //};
         public IActionResult Index()
         {
+           // ControllerContext.HttpContext.Request.RouteValues
+
            // return Content("Данные из первого контроллера");
             return View();
         }
@@ -24,6 +26,8 @@ namespace WebStore.Controllers
         {
             return $"Hello World! {Id} - {Value1}";
         }
+
+        public void Throw(string Message) => throw new ApplicationException(Message);
        
         //public IActionResult Details(int id)
         //{

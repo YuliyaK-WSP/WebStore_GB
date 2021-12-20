@@ -19,6 +19,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseMiddleware<TestMiddleware>();
+
 app.UseWelcomePage("/welcom");
 // Загрузка информации из файла конфигурации
 
