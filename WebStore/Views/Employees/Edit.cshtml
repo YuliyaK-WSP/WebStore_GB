@@ -1,10 +1,11 @@
-﻿@model WebStore.ViewModels.EmployeeViewModel
+﻿@model EmployeeViewModel
 
-@{
-    ViewData["Title"] = "Edit";
+   @{
+    ViewData["Title"] = "Редактирование сотрудников";
 }
+
 <div class = "container">
-    <h1>Edit</h1>
+    <h1>Редактирование сотрудников</h1>
 
 <h4>EmployeeEditViewModel</h4>
 <hr />
@@ -55,10 +56,13 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
-    <a asp-controller = "Employees" 
-       asp-action="Delete" 
-       asp-route-id="@Model.Id" class="text-danger"></a>
+    <a asp-action="Index">Назад к списку</a>|
+        <a asp-controller="Employees" 
+           asp-action="Delete" 
+           asp-route-id="@Model.Id" 
+           class="text-danger">
+            удаление
+        </a>
 
 </div>
 </div>
