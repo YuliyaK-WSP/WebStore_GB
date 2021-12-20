@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 using WebStore.Data;
 using WebStore.Models;
 using WebStore.Services.Interfaces;
@@ -79,6 +80,7 @@ namespace WebStore.Controllers
                 _Logger.LogWarning("При редактировании сотрудника с id:{0} он не был найден", id);
                 return NotFound();
             }
+            
             var model = new EmployeeViewModel
             {
                 Id = employee.Id,
@@ -105,18 +107,40 @@ namespace WebStore.Controllers
                 Profession = Model.Profession,
                 Department = Model.Department,
             };
+            
             if (Model.Id == 0)
             {
-                _EmployeesData.Add(employee);
-                _Logger.LogInformation("Создан новый сотрудник {0}", employee);
+                if(Model.LastName != null)
+                {
+                    _EmployeesData.Add(employee);
+                    _Logger.LogInformation("Создан новый сотрудник {0}", employee);
+                    
+                }
+                else
+                {
+                    _Logger.LogInformation("проверка данных не прошла");
+                    //Messagebox();
+
+
+                }
+                
             }
             else if (!_EmployeesData.Edit(employee))
             {
                 _Logger.LogInformation("Информация о сотруднике {0} изменена", employee);
                 return NotFound();
             }
+            
 
             return RedirectToAction("Index");
         }
+        //public void Messagebox()
+        //{
+        //    var builder = WebApplication.CreateBuilder();
+        //    var app = builder.Build();
+        //    app.Run(async (context) => await context.Response.WriteAsync("Hello METANIT.COM"));
+        //    app.Run();
+        //}
     }
+    
 }
