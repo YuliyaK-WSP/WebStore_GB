@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebStore.ViewModels
 {
-    public class EmployeeViewModel
+    public class EmployeeViewModel :IValidatableObject
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
