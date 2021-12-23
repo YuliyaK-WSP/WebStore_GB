@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebStore.Domain.Entities.Base.Interface;
 
 namespace WebStore.Domain.Entities.Base
 {
-    public class NamedEntity
+    public abstract class NamedEntity:Entity,INamedEntity
     {
-
+        public string Name { get;set }
     }
 }
