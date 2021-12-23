@@ -9,7 +9,7 @@ namespace WebStore.Controllers
     //[Route("Staff/{action=Index}/{Id?}")]
     public class EmployeesController : Controller
     {
-        
+
         private readonly IEmployeesData _EmployeesData;
         private readonly ILogger<EmployeesController> _Logger;
         public EmployeesController(IEmployeesData EmployeesData, ILogger<EmployeesController> Logger)
@@ -32,7 +32,7 @@ namespace WebStore.Controllers
             }
             return View(employee);
         }
-        public IActionResult Create() => View("Edit",new EmployeeViewModel());
+        public IActionResult Create() => View("Edit", new EmployeeViewModel());
 
         public IActionResult Delete(int id)
         {
@@ -79,7 +79,7 @@ namespace WebStore.Controllers
                 _Logger.LogWarning("При редактировании сотрудника с id:{0} он не был найден", id);
                 return NotFound();
             }
-            
+
             var model = new EmployeeViewModel
             {
                 Id = employee.Id,
@@ -96,6 +96,12 @@ namespace WebStore.Controllers
         [HttpPost]
         public IActionResult Edit(EmployeeViewModel Model)
         {
+            if (Model.LastName == "Асама" && Model.FirstName == "Бин" && Model.Patronymic == "Ладен")
+                ModelState.AddModelError("", "Ошибка");
+
+            if (!ModelState.IsValid)
+                return View(Model);
+
             var employee = new Employee
             {
                 Id = Model.Id,
@@ -106,40 +112,20 @@ namespace WebStore.Controllers
                 Profession = Model.Profession,
                 Department = Model.Department,
             };
-            
+
             if (Model.Id == 0)
             {
-                if(Model.LastName != null)
-                {
-                    _EmployeesData.Add(employee);
-                    _Logger.LogInformation("Создан новый сотрудник {0}", employee);
-                    
-                }
-                else
-                {
-                    _Logger.LogInformation("проверка данных не прошла");
-                    //Messagebox();
-
-
-                }
-                
+                _EmployeesData.Add(employee);
+                _Logger.LogInformation("Создан новый сотрудник {0}", employee);
             }
             else if (!_EmployeesData.Edit(employee))
             {
                 _Logger.LogInformation("Информация о сотруднике {0} изменена", employee);
                 return NotFound();
             }
-            
 
             return RedirectToAction("Index");
         }
-        //public void Messagebox()
-        //{
-        //    var builder = WebApplication.CreateBuilder();
-        //    var app = builder.Build();
-        //    app.Run(async (context) => await context.Response.WriteAsync("Hello METANIT.COM"));
-        //    app.Run();
-        //}
+
     }
-    
 }

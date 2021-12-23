@@ -12,6 +12,7 @@ services.AddControllersWithViews(opt =>
 
 services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
 
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
