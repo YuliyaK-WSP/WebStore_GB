@@ -26,22 +26,20 @@ namespace WebStore.ViewModels
         public string FirstName { get; set; }
 
         [Display(Name = "Отчество")]
-        [StringLength(255, MinimumLength = 2, ErrorMessage = "Длина должна быть от 2 до 255 символов")]
-        [RegularExpression(@"([А-ЯЁ][а-яё]+)|([A-Z][a-z]+)", ErrorMessage = "Ошибка формата")]
+        [StringLength(255, ErrorMessage = "Длина должна быть до 255 символов")]
+        [RegularExpression(@"(([А-ЯЁ][а-яё]+)|([A-Z][a-z]+))?", ErrorMessage = "Ошибка формата")]
         public string Patronymic { get; set; }
 
         [Display(Name = "Возраст")]
-        [StringLength(255, MinimumLength = 2, ErrorMessage = "Возраст должен быть в пределах от 18 до 80 лет")]
-        public int Age { get; set; }
+        [Range(18, 80, ErrorMessage = "Возраст должен быть в пределах от 18 до 80 лет")]
+        public int Age{get; set;}
 
-        [Display(Name = "Профессия")]
-        [StringLength(255, MinimumLength = 2, ErrorMessage = "Длина должна быть от 2 до 255 символов")]
-        [RegularExpression(@"([А-ЯЁ][а-яё]+)|([A-Z][a-z]+)", ErrorMessage = "Ошибка формата")]
+            [Display(Name = "Профессия")]
+        
         public string Profession { get; set; }
 
         [Display(Name = "Департамент")]
-        [StringLength(255, MinimumLength = 2, ErrorMessage = "Длина должна быть от 2 до 255 символов")]
-        [RegularExpression(@"([А-ЯЁ][а-яё]+)|([A-Z][a-z]+)", ErrorMessage = "Ошибка формата")]
+        
         public int Department { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext Context)

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebStore.Domain.Entities.Base.Interface;
 
-namespace WebStore.Domain.Entities.Base
+namespace WebStore.ViewModels
 {
-    public abstract class NamedEntity:Entity,INamedEntity
+    public class BrandViewModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
     }
 }

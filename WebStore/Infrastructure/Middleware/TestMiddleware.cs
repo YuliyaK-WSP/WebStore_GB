@@ -4,31 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebStore.Infrastructure.Middleware
+namespace WebStore.Infrastructure.Middleware;
+
+public class TestMiddleware
 {
-    public class TestMiddleware
+    private readonly RequestDelegate _Next;
+
+    public TestMiddleware(RequestDelegate Next)
     {
-        private readonly RequestDelegate _Next;
+        _Next = Next;
+    }
 
-        public TestMiddleware(RequestDelegate Next)
-        {
-            _Next = Next;
-        }
+    public async Task Invoke(HttpContext Context)
+    {
+        var controller_name = Context.Request.RouteValues["controller"];
+        var action_name = Context.Request.RouteValues["action"];
 
-        public async Task Invoke(HttpContext Context)
-        {
-            var controller_name = Context.Request.RouteValues["controller"];
-            var action_name = Context.Request.RouteValues["action"];
+        // Обработка информации из Context.Request
 
-            // Обработка информации из Context.Request
+        var processing_task = _Next(Context); // далее здесь работает оставшаяся часть конвейера
 
-            var processing_task = _Next(Context); // далее здесь работает оставшаяся часть конвейера
+        // Выполнить какие-то действия параллельно асинхронно с остальной частью конвейера
 
-            // Выполнить какие-то действия параллельно асинхронно с остальной частью конвейера
+        await processing_task;
 
-            await processing_task;
-
-            // Дообработка данных в Context.Response
-        }
+        // Дообработка данных в Context.Response
     }
 }

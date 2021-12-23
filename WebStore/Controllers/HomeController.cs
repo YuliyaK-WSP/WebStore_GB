@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebStore.Models;
+using WebStore.Services.Interfaces;
+using WebStore.ViewModels;
 
 namespace WebStore.Controllers
 {
     public class HomeController : Controller
     {
-        
+
         //private static readonly List<EmployeeView> __Details = new()
         //{
         //    new EmployeeView { Id = 1, LastName = "Иванов", FirstName = "Иван", Patronymic = "Иванович", Age = 23, Profession = "Инженер - Разрабочик", Department = 56,  Description = "Хроший сотрудник один" },
@@ -15,11 +17,23 @@ namespace WebStore.Controllers
         //    new EmployeeView { Id = 5, LastName = "Сергеев", FirstName = "Сергей", Patronymic = "Алексеевич", Age = 35, Profession = "Аналитик", Department = 46,  Description = "Хроший сотрудник пять" },
 
         //};
-        public IActionResult Index()
+        public IActionResult Index([FromServices] IProductData ProductData)
         {
-           // ControllerContext.HttpContext.Request.RouteValues
+            var products = ProductData.GetProducts()
+                   .OrderBy(p => p.Order)
+                   .Take(6)
+                   .Select(p => new ProductViewModel
+                   {
+                       Id = p.Id,
+                       Name = p.Name,
+                       Price = p.Price,
+                       ImageUrl = p.ImageUrl,
+                   });
+            ViewBag.Products = products;
 
-           // return Content("Данные из первого контроллера");
+            //ControllerContext.HttpContext.Request.RouteValues
+
+            //return Content("Данные из первого контроллера");
             return View();
         }
         public string ConfiguredAction(string Id, string Value1)
@@ -28,21 +42,8 @@ namespace WebStore.Controllers
         }
 
         public void Throw(string Message) => throw new ApplicationException(Message);
-       
-        //public IActionResult Details(int id)
-        //{
-        //     List<EmployeeView> __Det = new List<EmployeeView>();
-        //    //Получаем сотрудника по Id
-        //    foreach(EmployeeView det in __Details)
-        //    {
-        //        if(det.Id == id)
-        //        {
-        //            __Det.Add(det);
-        //        }
-        //    }
-        //    return View(__Det);
-            
-        //}
+
+        public IActionResult Error404() => View();
 
     }
 }
