@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
 using TestConsole.Data;
 
-namespace TestConsole.Services.Interface
+namespace TestConsole.Services.Interfaces
 {
     public interface IDataManager
     {

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestConsole.Data;
-using TestConsole.Services.Interface;
+﻿using TestConsole.Data;
+using TestConsole.Services.Interfaces;
 
 namespace TestConsole.Services
 {
