@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+
 using TestConsole.Data;
 using TestConsole.Services;
-using TestConsole.Services.Interface;
+using TestConsole.Services.Interfaces;
 
 var service_collection = new ServiceCollection();
 
