@@ -7,4 +7,5 @@ public class DataValue
     public string Value { get; set; }
 
 public DateTime Time { get; set; }
+
 }
